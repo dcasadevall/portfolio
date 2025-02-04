@@ -48,8 +48,19 @@ const social = [
   },
 ];
 
-const about = {
+const home = {
   label: "Home",
+  title: `${person.name}`,
+  description: `Hi, I'm ${person.name}, a ${person.role} from ${person.location}.`,
+  avatar: {
+    display: true,
+  },
+  // Create new blog posts by adding a new .mdx file to app/blog/posts
+  // All posts will be listed on the /home route
+}
+
+const resume = {
+  label: "Resume",
   title: `${person.name}`,
   description: `Meet ${person.name}, ${person.role} from ${person.location}`,
   tableOfContent: {
@@ -57,7 +68,7 @@ const about = {
     subItems: false,
   },
   avatar: {
-    display: true,
+    display: false,
   },
   calendar: {
     display: false,
@@ -183,4 +194,4 @@ const work = {
   // All projects will be listed on the /home and /work routes
 };
 
-export { person, social, newsletter, about, work };
+export { person, social, newsletter, resume, home, work };

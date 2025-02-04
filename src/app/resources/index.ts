@@ -12,6 +12,7 @@ export {
   person,
   social,
   newsletter,
-  about,
+  home,
+  resume,
   work,
 } from "@/app/resources/content";
