@@ -9,7 +9,7 @@ const person = {
   role: "Staff Software Engineer",
   avatar: "/images/avatar.png",
   location: "Europe/Madrid", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
-  languages: [], // optional: Leave the array empty if you don't want to display languages
+  languages: ["Spanish", "English"], // optional: Leave the array empty if you don't want to display languages
 };
 
 const newsletter = {
@@ -68,7 +68,7 @@ const resume = {
     subItems: false,
   },
   avatar: {
-    display: false,
+    display: true,
   },
   calendar: {
     display: false,
@@ -187,11 +187,15 @@ const resume = {
 };
 
 const work = {
-  label: "Work",
-  title: "My projects",
-  description: `Design and dev projects by ${person.name}`,
-  // Create new project pages by adding a new .mdx file to app/blog/posts
-  // All projects will be listed on the /home and /work routes
+  label: "Dev & Games",
+  title: "Dev & Games",
+  description: `Game and dev projects by ${person.name}`,
 };
 
-export { person, social, newsletter, resume, home, work };
+const sideProjects = {
+  label: "Side Projects",
+  title: "Side Projects",
+  description: `Side projects by ${person.name}`,
+};
+
+export { person, social, newsletter, resume, home, work, sideProjects };
