@@ -87,7 +87,7 @@ const resume = {
     ),
   },
   work: {
-    display: true, // set to false to hide this section
+    display: true,
     title: "Work Experience",
     experiences: [
       {
@@ -96,36 +96,82 @@ const resume = {
         role: "Staff Software Engineer",
         achievements: [
           <>
-            Redesigned the UI/UX for the FLY platform, resulting in a 20% increase in user
-            engagement and 30% faster load times.
+            Redesigned and implemented the <span className="highlight">AR Multiplayer Services</span> backend, achieving 99.9% uptime
+            and 80%+ test coverage
           </>,
           <>
-            Spearheaded the integration of AI tools into design workflows, enabling designers to
-            iterate 50% faster.
+            Developed a multiplayer <span className="highlight">FPS</span> prototype in <span className="highlight">Unity</span>, using <span className="highlight">client prediction</span> techniques like
+            <span className="highlight"> dead reckoning</span> to ensure smooth gameplay even with 100ms RTT latency
+          </>,
+          <>
+            Created a <span className="highlight">React</span> <span className="highlight">A-Frame</span> Multiplayer Game Engine that interfaces with Niantic's AR Multiplayer Backend,
+            providing features such as <span className="highlight">transform interpolation</span> and <span className="highlight">clock synchronization</span>
+          </>,
+          <>
+            Designed and implemented Niantic's standard <span className="highlight">gRPC</span> API, reducing boilerplate code by over 50%
           </>,
         ],
-        images: [
-          // optional: leave the array empty if you don't want to display images
-          {
-            src: "/images/projects/project-01/cover-01.jpg",
-            alt: "Once UI Project",
-            width: 16,
-            height: 9,
-          },
-        ],
+        images: [],
       },
       {
-        company: "Creativ3",
-        timeframe: "2018 - 2022",
-        role: "Lead Designer",
+        company: "Apple",
+        timeframe: "2017 - 2018",
+        role: "Software Engineer",
         achievements: [
           <>
-            Developed a design system that unified the brand across multiple platforms, improving
-            design consistency by 40%.
+            Improved <span className="highlight">multithreading QoS</span>, achieving up to 20% faster response times
           </>,
           <>
-            Led a cross-functional team to launch a new product line, contributing to a 15% increase
-            in overall company revenue.
+            Led a refactor of the <span className="highlight">iCloud</span> and <span className="highlight">CalDAV</span> sync layer, reducing dependencies and improving test coverage
+          </>,
+        ],
+        images: [],
+      },
+      {
+        company: "Storm8",
+        timeframe: "2014 - 2017",
+        role: "Staff Engineer",
+        achievements: [
+          <>
+            Migrated <span className="highlight">JSON</span> serialization to <span className="highlight">Protobuf</span>, reducing deserialization time by 60%
+          </>,
+          <>
+            Developed object placement <span className="highlight">heuristics</span> for Bakery Story 2, improving D7 retention by 5%
+          </>,
+          <>
+            Architected the <span className="highlight">Unity</span> game client for Bingo, leveraging <span className="highlight">dependency injection</span>
+          </>,
+        ],
+        images: [],
+      },
+      {
+        company: "Market Motive",
+        timeframe: "2010 - 2014",
+        role: "Lead Developer",
+        achievements: [
+          <>
+            Developed a secure <span className="highlight">video streaming</span> platform that reduced piracy to 0%
+          </>,
+          <>
+            Built mobile and desktop versions of an <span className="highlight">HTML5</span> video player with
+            <span className="highlight"> custom encryption</span>
+          </>,
+          <>
+            Designed a one-page shopping cart that increased conversion rates from 0.75% to 1.2%
+          </>,
+        ],
+        images: [],
+      },
+      {
+        company: "CADT S.A.",
+        timeframe: "Summers 2008 - 2009",
+        role: "Software Engineer",
+        achievements: [
+          <>
+            Implemented a <span className="highlight">multi-threaded</span> repository sync system similar to Dropbox and Google Drive
+          </>,
+          <>
+            Developed an <span className="highlight">AJAX</span>-based chat system
           </>,
         ],
         images: [],
@@ -133,54 +179,42 @@ const resume = {
     ],
   },
   studies: {
-    display: true, // set to false to hide this section
+    display: true,
     title: "Studies",
     institutions: [
       {
-        name: "University of Jakarta",
-        description: <>Studied software engineering.</>,
+        name: "Universitat Autonoma de Barcelona (UAB)",
+        description: <>B.S. in Computer Science (2011) with scholarship at University of California, Santa Cruz (2008-2009)</>,
       },
       {
-        name: "Build the Future",
-        description: <>Studied online marketing and personal branding.</>,
+        name: "Universitat Autonoma de Barcelona (UAB)",
+        description: <>B.S. in Radiowaves and Remote Communications (2006)</>,
       },
     ],
   },
   technical: {
-    display: true, // set to false to hide this section
+    display: true,
     title: "Technical skills",
     skills: [
       {
-        title: "Figma",
-        description: <>Able to prototype in Figma with Once UI with unnatural speed.</>,
-        // optional: leave the array empty if you don't want to display images
-        images: [
-          {
-            src: "/images/projects/project-01/cover-02.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
-          {
-            src: "/images/projects/project-01/cover-03.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
-        ],
+        title: "Backend Development",
+        description: <>Extensive experience with <span className="highlight">GoLang</span>, <span className="highlight">Java</span>, and <span className="highlight">gRPC</span> for high-performance backend services</>,
+        images: [],
       },
       {
-        title: "Next.js",
-        description: <>Building next gen apps with Next.js + Once UI + Supabase.</>,
-        // optional: leave the array empty if you don't want to display images
-        images: [
-          {
-            src: "/images/projects/project-01/cover-04.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
-        ],
+        title: "Game Development",
+        description: <>Proficient in <span className="highlight">Unity</span> and <span className="highlight">C#</span> with focus on multiplayer systems, client prediction, and AR technologies</>,
+        images: [],
+      },
+      {
+        title: "Infrastructure",
+        description: <>Experience with <span className="highlight">Kubernetes</span>, <span className="highlight">Bazel</span>, and distributed systems architecture</>,
+        images: [],
+      },
+      {
+        title: "Frontend Development",
+        description: <>Skilled in <span className="highlight">React</span> and <span className="highlight">JavaScript</span> for building responsive web applications</>,
+        images: [],
       },
     ],
   },

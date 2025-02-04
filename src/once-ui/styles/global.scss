@@ -67,3 +67,8 @@ a:not(.button) {
 ::-webkit-scrollbar-corner {
     background-color: var(--static-transparent);
 }
+
+.highlight {
+    color: #10B981;
+    font-weight: bold;
+}
