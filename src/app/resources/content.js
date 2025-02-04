@@ -62,7 +62,7 @@ const home = {
 const resume = {
   label: "Resume",
   title: `${person.name}`,
-  description: `Meet ${person.name}, ${person.role} from ${person.location}`,
+  description: `Meet ${person.name}, ${person.role} at Niantic.`,
   tableOfContent: {
     display: true,
     subItems: false,
@@ -91,9 +91,9 @@ const resume = {
     title: "Work Experience",
     experiences: [
       {
-        company: "FLY",
-        timeframe: "2022 - Present",
-        role: "Senior Design Engineer",
+        company: "Niantic",
+        timeframe: "2018 - Present",
+        role: "Staff Software Engineer",
         achievements: [
           <>
             Redesigned the UI/UX for the FLY platform, resulting in a 20% increase in user

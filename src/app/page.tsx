@@ -26,7 +26,7 @@ export async function generateMetadata() {
     title,
     description,
     openGraph: {
-      title,
+      title: `${person.firstName}'s Portfolio`,
       description,
       type: "website",
       url: `https://${baseURL}`,
@@ -39,7 +39,7 @@ export async function generateMetadata() {
     },
     twitter: {
       card: "summary_large_image",
-      title,
+      title: `${person.firstName}'s Portfolio`,
       description,
       images: [ogImage],
     },
