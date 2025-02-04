@@ -1,6 +1,4 @@
-import { getPosts } from "@/app/utils/utils";
-import { Column } from "@/once-ui/components";
-import { Projects } from "@/components/work/Projects";
+import { Column, Grid } from "@/once-ui/components";
 import { baseURL } from "@/app/resources";
 import { person, work } from "@/app/resources/content";
 
@@ -34,8 +32,6 @@ export async function generateMetadata() {
 }
 
 export default function Work() {
-  let allProjects = getPosts(["src", "app", "work", "projects"]);
-
   return (
     <Column maxWidth="m">
       <script
@@ -47,23 +43,50 @@ export default function Work() {
             "@type": "CollectionPage",
             headline: work.title,
             description: work.description,
-            url: `https://${baseURL}/projects`,
-            image: `${baseURL}/og?title=Design%20Projects`,
+            url: `https://${baseURL}/work`,
+            image: `${baseURL}/og?title=Game%20Projects`,
             author: {
               "@type": "Person",
               name: person.name,
             },
-            hasPart: allProjects.map((project) => ({
-              "@type": "CreativeWork",
-              headline: project.metadata.title,
-              description: project.metadata.summary,
-              url: `https://${baseURL}/projects/${project.slug}`,
-              image: `${baseURL}/${project.metadata.image}`,
+            hasPart: work.projects.map((project) => ({
+              "@type": "MobileApplication",
+              name: project.title,
+              description: project.description,
+              url: project.url,
+              applicationCategory: "Game",
+              author: {
+                "@type": "Organization",
+                name: project.company,
+              },
             })),
           }),
         }}
       />
-      <Projects />
+      <Grid columns="3" gap="8">
+        {work.projects.map((project) => (
+          <a
+            key={project.id}
+            href={project.url}
+            className="group block overflow-hidden rounded-lg border border-gray-200 hover:border-gray-300 transition-all hover:shadow-md"
+          >
+            <div className="w-full h-[250px] overflow-hidden">
+              <img
+                src={project.image}
+                alt={project.title}
+                width={250}
+                height={250}
+                className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+            <div className="p-4">
+              <h3 className="font-semibold text-lg mb-2">{project.title}</h3>
+              <p className="text-gray-500 text-sm mb-2">{project.company}</p>
+              <p className="text-gray-600 text-sm">{project.description}</p>
+            </div>
+          </a>
+        ))}
+      </Grid>
     </Column>
   );
 }

@@ -130,7 +130,7 @@ const resume = {
       {
         company: "Storm8",
         timeframe: "2014 - 2017",
-        role: "Staff Engineer",
+        role: "Staff Software Engineer",
         achievements: [
           <>
             Migrated <span className="highlight">JSON</span> serialization to <span className="highlight">Protobuf</span>, reducing deserialization time by 60%
@@ -224,12 +224,121 @@ const work = {
   label: "Dev & Games",
   title: "Dev & Games",
   description: `Game and dev projects by ${person.name}`,
+  projects: [
+    {
+      id: "pokemon-go",
+      title: "Pokémon GO",
+      description: "The revolutionary AR game that brings Pokémon into the real world.",
+      company: "Niantic",
+      image: "/images/work/pokemon-go.webp",
+      url: "https://apps.apple.com/us/app/pokémon-go/id1094591345"
+    },
+    {
+      id: "monster-hunter-now",
+      title: "Monster Hunter Now",
+      description: "Hunt monsters in the real world with Capcom's beloved franchise.",
+      company: "Niantic",
+      image: "/images/work/monster-hunter-now.webp",
+      url: "https://apps.apple.com/us/app/monster-hunter-now/id1621370796"
+    },
+    {
+      id: "pikmin-bloom",
+      title: "Pikmin Bloom",
+      description: "Make walking more fun with Nintendo's Pikmin characters.",
+      company: "Niantic",
+      image: "/images/work/pikmin-bloom.webp",
+      url: "https://apps.apple.com/us/app/pikmin-bloom/id1556357398"
+    },
+    {
+      id: "bakery-story-2",
+      title: "Bakery Story 2",
+      description: "Create and manage your dream bakery in this delightful simulation game.",
+      company: "Storm8",
+      image: "/images/work/bakery-story-2.webp",
+      url: "https://apps.apple.com/us/app/bakery-story-2/id1012021183"
+    },
+    {
+      id: "diamond-quest",
+      title: "Diamond Quest",
+      description: "Match diamonds and rescue Puzzle Pals in an exciting quest!",
+      company: "Storm8",
+      image: "/images/work/diamond-quest.webp",
+      url: "https://apps.apple.com/us/app/diamond-quest/id888104696"
+    },
+    {
+      id: "hidden-objects",
+      title: "Hidden Objects: Mystery Crimes",
+      description: "Solve mysteries by finding hidden objects in beautiful scenes.",
+      company: "Storm8",
+      image: "/images/work/crime-scene.webp",
+      url: "https://apps.apple.com/us/app/hidden-objects-mystery-crimes/id1179415958"
+    }
+  ]
 };
 
 const sideProjects = {
   label: "Side Projects",
   title: "Side Projects",
-  description: `Side projects by ${person.name}`,
+  description: "A collection of my personal projects and experiments",
+
+  projects: [
+    {
+      id: "mmorpg-assistant",
+      title: "MMORPG Assistant",
+      description: "C# client broadcasting the state of an MMO game to a GoLang backend. Stats are consumed by a Unity client that replays the game state using extracted game models and maps with minimal latency.",
+      timeframe: "2022-2024",
+      image: "/path/to/image.jpg",
+      url: ""
+    },
+    {
+      id: "tabletop-combat",
+      title: "Tabletop Combat Helper",
+      description: "A command-based networked multiplayer framework for interactive D&D maps.",
+      timeframe: "2019",
+      image: "/path/to/image.jpg",
+      url: ""
+    },
+    {
+      id: "office-crawler",
+      title: "Office Crawler",
+      description: "An office escape RPG with dependency injection across all modules.",
+      timeframe: "2017",
+      image: "/path/to/image.jpg",
+      url: ""
+    },
+    {
+      id: "alexa-skills",
+      title: "Alexa Utility Skills",
+      description: "Node.js-based skills for daily task automation.",
+      timeframe: "2015",
+      image: "/path/to/image.jpg",
+      url: ""
+    },
+    {
+      id: "sushi-blast",
+      title: "Sushi Blast",
+      description: "An indie Unity shooter with Dijkstra-based pathfinding.",
+      timeframe: "2014",
+      image: "/path/to/image.jpg",
+      url: ""
+    },
+    {
+      id: "rtmpe-client",
+      title: "PHP RTMPE Client",
+      description: "A PHP client for RTMPE streaming, allowing web applications to retrieve video packets.",
+      timeframe: "2013",
+      image: "/path/to/image.jpg",
+      url: ""
+    },
+    {
+      id: "xml-inventory",
+      title: "Secure XML Inventory System",
+      description: "A hash-secured serialization system for player inventory.",
+      timeframe: "2012",
+      image: "/path/to/image.jpg",
+      url: ""
+    }
+  ]
 };
 
 export { person, social, newsletter, resume, home, work, sideProjects };
