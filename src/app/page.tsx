@@ -20,7 +20,7 @@ import styles from "../components/about/about.module.scss";
 export async function generateMetadata() {
   const title = resume.title;
   const description = resume.description;
-  const ogImage = `https://${baseURL}/og?title=${encodeURIComponent(title)}`;
+  const ogImage = `https://${baseURL}/og?title=${encodeURIComponent(person.firstName)}%27s%20Portfolio`;
 
   return {
     title,
