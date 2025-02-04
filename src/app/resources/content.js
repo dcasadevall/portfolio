@@ -100,12 +100,12 @@ const resume = {
             and 80%+ test coverage
           </>,
           <>
-            Developed a multiplayer <span className="highlight">FPS</span> prototype in <span className="highlight">Unity</span>, using <span className="highlight">client prediction</span> techniques like
-            <span className="highlight"> dead reckoning</span> to ensure smooth gameplay even with 100ms RTT latency
-          </>,
-          <>
             Created a <span className="highlight">React</span> <span className="highlight">A-Frame</span> Multiplayer Game Engine that interfaces with Niantic's AR Multiplayer Backend,
             providing features such as <span className="highlight">transform interpolation</span> and <span className="highlight">clock synchronization</span>
+          </>,
+          <>
+            Developed a multiplayer <span className="highlight">FPS</span> prototype in <span className="highlight">Unity</span>, using <span className="highlight">client prediction</span> techniques like
+            <span className="highlight"> dead reckoning</span> to ensure smooth gameplay even with 100ms RTT latency
           </>,
           <>
             Designed and implemented Niantic's standard <span className="highlight">gRPC</span> API, reducing boilerplate code by over 50%
