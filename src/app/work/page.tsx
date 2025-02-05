@@ -1,4 +1,4 @@
-import { Column, Grid } from "@/once-ui/components";
+import { Column, Grid, SmartImage } from "@/once-ui/components";
 import { baseURL } from "@/app/resources";
 import { person, work } from "@/app/resources/content";
 
@@ -33,7 +33,7 @@ export async function generateMetadata() {
 
 export default function Work() {
   return (
-    <Column maxWidth="m">
+    <Column maxWidth="m" gap="8">
       <script
         type="application/ld+json"
         suppressHydrationWarning
@@ -68,20 +68,22 @@ export default function Work() {
           <a
             key={project.id}
             href={project.url}
-            className="group block overflow-hidden rounded-lg border border-gray-200 hover:border-gray-300 transition-all hover:shadow-md"
+            className="group block overflow-hidden rounded-lg hover:shadow-md transition-all"
           >
-            <div className="w-full h-[250px] overflow-hidden">
-              <img
-                src={project.image}
-                alt={project.title}
-                width={250}
-                height={250}
-                className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
-              />
-            </div>
+            <SmartImage
+              src={project.image}
+              alt={project.title}
+              aspectRatio="1/1"
+              objectFit="contain"
+              background="neutral-weak"
+              className="rounded-lg p-4"
+              radius="s-4"
+            />
             <div className="p-4">
               <h3 className="font-semibold text-lg mb-2">{project.title}</h3>
-              <p className="text-gray-500 text-sm mb-2">{project.company}</p>
+              {project.company && (
+                <p className="text-gray-500 text-sm mb-2">{project.company}</p>
+              )}
               <p className="text-gray-600 text-sm">{project.description}</p>
             </div>
           </a>

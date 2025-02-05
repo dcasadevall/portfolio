@@ -230,7 +230,7 @@ const work = {
       title: "Pokémon GO",
       description: "The revolutionary AR game that brings Pokémon into the real world.",
       company: "Niantic",
-      image: "/images/work/pokemon-go.webp",
+      image: "/images/work/pngegg.png",
       url: "https://apps.apple.com/us/app/pokémon-go/id1094591345"
     },
     {
