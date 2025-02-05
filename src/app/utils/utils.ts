@@ -18,6 +18,12 @@ type Metadata = {
   tag?: string;
   team: Team[];
   link?: string;
+  textOverlays?: {
+    text: string;
+    position?: string;
+    startTime?: number;
+    duration?: number;
+  }[];
 };
 
 import { notFound } from 'next/navigation';
@@ -31,9 +37,9 @@ function getMDXFiles(dir: string) {
 }
 
 function readMDXFile(filePath: string) {
-    if (!fs.existsSync(filePath)) {
-        notFound();
-    }
+  if (!fs.existsSync(filePath)) {
+    notFound();
+  }
 
   const rawContent = fs.readFileSync(filePath, "utf-8");
   const { data, content } = matter(rawContent);
@@ -47,6 +53,11 @@ function readMDXFile(filePath: string) {
     tag: data.tag || [],
     team: data.team || [],
     link: data.link || "",
+    textOverlays: data.textOverlays?.map(overlay => ({
+      ...overlay,
+      startTime: overlay.startTime || 0,
+      duration: overlay.duration || 5000
+    })) || [],
   };
 
   return { metadata, content };

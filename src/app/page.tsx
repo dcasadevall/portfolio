@@ -204,7 +204,6 @@ export default function Home() {
                 <Button
                   className="s-flex-hide pdf-icon"
                   href="/api/download-resume"
-                  prefixIcon="download"
                   label="Resume"
                   size="s"
                   variant="secondary"
@@ -213,7 +212,6 @@ export default function Home() {
                   className="s-flex-show pdf-icon"
                   size="l"
                   href="/api/download-resume"
-                  icon="download"
                   variant="secondary"
                 />
               </Flex>

@@ -1,6 +1,13 @@
 import { getPosts } from "@/app/utils/utils";
 import { Column } from "@/once-ui/components";
 import { ProjectCard } from "@/components";
+import { Metadata } from "@/types";
+
+interface Post {
+  slug: string;
+  content: string;
+  metadata: Metadata;
+}
 
 interface ProjectsProps {
   range?: [number, number?];
@@ -30,6 +37,11 @@ export function Projects({ range }: ProjectsProps) {
           content={post.content}
           avatars={post.metadata.team?.map((member) => ({ src: member.avatar })) || []}
           link={post.metadata.link || ""}
+          textOverlays={post.metadata.textOverlays?.map(overlay => ({
+            ...overlay,
+            startTime: overlay.startTime || 0,
+            duration: overlay.duration || 5000
+          })) || []}
         />
       ))}
     </Column>
