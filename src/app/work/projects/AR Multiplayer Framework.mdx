@@ -22,30 +22,39 @@ link: "http://nianticspatial.com/augment/shared-ar"
 
 ## Overview
 
-In this project, I focused on automating the often tedious design handover process. The goal was to create a pipeline that converts Figma designs directly into clean, production-ready code. By integrating design tokens, component libraries, and automated workflows, this solution significantly reduced the time spent on translating design assets into code, while maintaining design consistency across the product.
+This project consisted of two main components: First, replacing Pokemon Go's existing multiplayer backend service 
+with a more efficient and cost-effective solution. The new backend service needed to maintain full compatibility 
+with the existing Unity client API. Second, I developed a new web-based 
+multiplayer AR framework from scratch, creating a React A-Frame API that enables developers to create web-based 
+multiplayer AR applications using 8thwall's web editor. This framework includes advanced features like clock 
+synchronization and client interpolation, making it possible to create sophisticated multiplayer AR experiences 
+directly in the browser.
 
 ## Key Features
 
-- **Figma Plugin Integration**: Developed a custom Figma plugin that extracts design tokens such as colors, typography, and spacing values, and exports them in a format compatible with our codebase.
-- **Code Generation**: Integrated an automated process that translates Figma components into React code using a combination of design tokens and pre-built component templates. This allowed developers to focus more on logic and less on repetitive UI coding.
-- **Continuous Sync**: Established a CI/CD pipeline that continuously synchronizes design changes from Figma to the codebase, ensuring design updates are reflected instantly without manual intervention.
-- **Scalable Design System**: Leveraged a design system that remains the single source of truth for both designers and developers, making it easy to maintain consistency even as the product evolves.
+- **Scalable Architecture**: Designed and implemented a streamlined multiplayer service that significantly reduced operational costs while maintaining high performance and reliability.
+- **Unity API Compatibility**: Maintained full feature parity with the existing Unity mobile client API, ensuring seamless transition for mobile applications.
+- **Web AR Integration**: Created a comprehensive React A-Frame API that bridges the gap between web technologies and AR capabilities, enabling developers to create experiences similar to [Hot Pot Hop](https://8thwall.8thwall.app/hot-pot-hop/).
+- **Real-time Synchronization**: Implemented robust clock synchronization and client interpolation systems to ensure smooth multiplayer experiences across both mobile and web platforms.
+- **Cross-Platform Support**: Developed a unified backend that seamlessly supports both Unity mobile clients and web-based AR applications.
 
 ## Technologies Used
 
-- **Figma API**: For extracting design tokens and component data directly from the Figma designs.
-- **React and Next.js**: For building the front-end codebase with clean, reusable components.
-- **Styled-Components**: For managing styles dynamically using design tokens.
-- **GitHub Actions**: For automating the pipeline and syncing design changes to the repository.
+- **Node.js**: For building the scalable backend infrastructure.
+- **Unity**: For maintaining mobile client API compatibility.
+- **React**: For creating the web-based development framework.
+- **A-Frame**: For implementing WebXR capabilities and AR features.
+- **8thwall**: For leveraging advanced AR capabilities in web browsers, utilizing their [Shared AR modules](https://www.8thwall.com/8thwall/modules/shared-ar/release-notes/).
+- **WebSocket**: For real-time communication between clients and server.
 
 ## Challenges and Learnings
 
-One of the biggest challenges was ensuring that the generated code was clean and maintainable. This involved setting up intelligent mapping between Figma components and React code structures, as well as managing edge cases like responsive design and conditional rendering. Additionally, the continuous synchronization required a robust error-handling system to prevent conflicts during development.
+The primary challenge was replacing a complex, production-scale system while maintaining compatibility with existing Unity clients and introducing web support simultaneously. This required careful API design to support both platforms effectively. Implementing precise synchronization mechanisms for AR experiences across different platforms demanded deep understanding of networking principles and creative solutions for handling latency and state management. Additionally, ensuring consistent behavior between Unity and web clients required extensive cross-platform testing and optimization.
 
 ## Outcome
 
-The automated Figma to code pipeline has streamlined the handoff process, cutting down design-to-development time by 40%. Designers now have more confidence that their designs will be accurately translated into code, and developers can focus on more complex logic and feature development. This project has proven the value of automation in bridging the gap between design and development.
+The new multiplayer framework successfully replaced the legacy system, resulting in significantly reduced operational costs and improved maintainability. The framework now serves both Unity mobile clients and web-based AR applications through a unified backend. The addition of the React A-Frame API has enabled developers to create sophisticated multiplayer AR experiences for the web platform, expanding the reach of AR applications beyond native mobile apps. This project demonstrated the importance of architectural simplicity and the potential of cross-platform solutions in delivering complex AR experiences.
 
 ---
 
-This project demonstrates your ability to leverage automation and streamline workflows, which is highly relevant for design engineering portfolios focused on efficiency and innovation.
+Comments go here (not visible in the UI)
