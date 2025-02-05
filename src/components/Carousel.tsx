@@ -1,4 +1,4 @@
-import { SmartImage } from "@/once-ui/components";
+import { SmartImage, RevealFx } from "@/once-ui/components";
 import { useState, useEffect } from "react";
 
 interface CarouselImage {
@@ -23,29 +23,26 @@ export const Carousel: React.FC<CarouselProps> = ({
     textOverlays = []
 }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [showText, setShowText] = useState(true);
+    const [textIndex, setTextIndex] = useState(0);
 
+    // Separate timers for images and text
     useEffect(() => {
         if (images.length <= 1) return;
-
-        // Reset text visibility when image changes
-        setShowText(true);
-
-        // Hide text after specified duration
-        const textTimer = setTimeout(() => {
-            setShowText(false);
-        }, textDuration);
-
-        // Change image after autoplayInterval
         const imageTimer = setInterval(() => {
             setCurrentIndex((prev) => (prev + 1) % images.length);
         }, autoplayInterval);
 
-        return () => {
-            clearTimeout(textTimer);
-            clearInterval(imageTimer);
-        };
-    }, [currentIndex, images.length, autoplayInterval, textDuration]);
+        return () => clearInterval(imageTimer);
+    }, [images.length, autoplayInterval]);
+
+    useEffect(() => {
+        if (textOverlays.length <= 0) return;
+        const textTimer = setInterval(() => {
+            setTextIndex((prev) => (prev + 1) % textOverlays.length);
+        }, textDuration);
+
+        return () => clearInterval(textTimer);
+    }, [textOverlays.length, textDuration]);
 
     const handleNext = () => {
         setCurrentIndex((prev) => (prev + 1) % images.length);
@@ -84,10 +81,16 @@ export const Carousel: React.FC<CarouselProps> = ({
     return (
         <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', borderRadius: '12px', overflow: 'hidden' }}>
             {images.length > 0 && renderMedia(images[currentIndex])}
-            {showText && textOverlays && textOverlays[currentIndex] && (
-                <div className="absolute inset-0 flex items-center justify-center">
+            {textOverlays.length > 0 && (
+                <div className="absolute inset-0 flex items-center justify-center bg-black/50">
                     <div className="text-white text-2xl">
-                        {textOverlays[currentIndex].text}
+                        <RevealFx
+                            key={textIndex}
+                            direction="column"
+                            transition="micro-medium"
+                        >
+                            {textOverlays[textIndex].text}
+                        </RevealFx>
                     </div>
                 </div>
             )}

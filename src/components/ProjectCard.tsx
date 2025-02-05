@@ -14,6 +14,7 @@ import { useState } from "react";
 interface TextOverlay {
   title?: string;
   subtitle?: string;
+  startTime: number;
   duration: number;   // in seconds
 }
 
@@ -39,45 +40,22 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   link,
   textOverlays = [],
 }) => {
-  console.log('ProjectCard render - received textOverlays:', textOverlays);  // Check if props are received
   const [activeOverlay, setActiveOverlay] = useState<TextOverlay | null>(null);
 
   const handleTimeUpdate = (event: React.SyntheticEvent<HTMLVideoElement>) => {
     const video = event.currentTarget;
-    console.log('Video element:', video);  // Check if video element is valid
     const currentTime = video.currentTime;
-
-    console.log('-------- Time Update Event --------');
-    console.log('Video currentTime:', currentTime);
-    console.log('Video duration:', video.duration);
-    console.log('Video readyState:', video.readyState);
-    console.log('Video paused:', video.paused);
-    console.log('Video duration:', video.duration);
 
     const overlay = textOverlays.find(overlay => {
       const start = overlay.startTime;
       const end = overlay.startTime + overlay.duration;
 
-      console.log('Overlay duration:', overlay.duration);
-      console.log('Overlay start:', start);
-      console.log('Overlay end:', end);
-
       const isActive = currentTime >= start && currentTime <= end;
-      console.log(`Overlay timing check:
-        start: ${start}
-        end: ${end}
-        currentTime: ${currentTime}
-        isActive: ${isActive}
-      `);
       return isActive;
     });
 
-    console.log('Setting activeOverlay to:', overlay);
     setActiveOverlay(overlay || null);
   };
-
-  // Add a log when activeOverlay changes
-  console.log('Current activeOverlay:', activeOverlay);
 
   return (
     <Column fillWidth gap="m">
