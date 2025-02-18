@@ -139,7 +139,9 @@ const resume = {
             Developed object placement <span className="highlight">heuristics</span> for Bakery Story 2, improving D7 retention by 5%
           </>,
           <>
-            Architected the <span className="highlight">Unity</span> game client for Bingo, leveraging <span className="highlight">dependency injection</span>
+            Designed the company's game engine from the grounds up, using <span className="highlight">C#</span> and leveraging <span className="highlight">inversion
+              of control</span> and <span className="highlight">SOLID principles</span> to provide a maintainable and testable engine used throughout the
+            company
           </>,
         ],
         images: [],
