@@ -1,6 +1,7 @@
 import { Document, Page, Text, View, StyleSheet, Link } from '@react-pdf/renderer';
 import { resume, person } from '@/app/resources/content';
 import { baseURL } from '@/app/resources';
+import React from 'react';
 
 const styles = StyleSheet.create({
     page: {
@@ -70,15 +71,40 @@ const Footer = () => (
     </View>
 );
 
-export const PDFTemplate = () => (
-    <Document>
-        {/* First Page: Header, Intro, and Work Experience */}
+interface PDFTemplateProps extends React.ComponentProps<typeof Document> {
+    person: typeof person;
+    resume: typeof resume;
+}
+
+const stripHtml = (content: string | React.ReactElement) => {
+    if (typeof content === 'string') {
+        const withoutSpans = content.replace(/<span[^>]*>(.*?)<\/span>/g, '$1');
+        return withoutSpans.replace(/<[^>]*>/g, '');
+    }
+
+    // Handle React elements
+    if (React.isValidElement(content)) {
+        const element = content as React.ReactElement<{ children: React.ReactNode }>;
+        if (typeof element.props.children === 'string') {
+            return element.props.children;
+        }
+        if (Array.isArray(element.props.children)) {
+            return element.props.children
+                .map(child => stripHtml(child))
+                .join('');
+        }
+    }
+
+    return String(content);
+};
+
+export const PDFTemplate: React.FC<PDFTemplateProps> = ({ person, resume, ...props }) => (
+    <Document {...props}>
         <Page size="A4" style={styles.page}>
             {/* Header */}
             <View style={styles.section}>
                 <Text style={styles.heading}>{person.name}</Text>
                 <Text style={styles.text}>{person.role}</Text>
-                <Text style={styles.text}>{person.location}</Text>
                 <Link style={styles.link} src={`https://${baseURL}`}>
                     {`https://${baseURL}`}
                 </Link>
@@ -105,18 +131,14 @@ export const PDFTemplate = () => (
                             <Text style={styles.text}>{experience.role}</Text>
                             {experience.achievements?.map((achievement, i) => (
                                 <Text key={i} style={styles.achievement}>
-                                    • {achievement}
+                                    • {stripHtml(achievement)}
                                 </Text>
                             ))}
                         </View>
                     ))}
                 </View>
             )}
-            <Footer />
-        </Page>
 
-        {/* Second Page: Education and Technical Skills */}
-        <Page size="A4" style={styles.page}>
             {/* Education */}
             {resume.studies?.institutions?.length > 0 && (
                 <View style={styles.section}>
@@ -136,8 +158,8 @@ export const PDFTemplate = () => (
                     <Text style={styles.heading}>{resume.technical.title || 'Technical Skills'}</Text>
                     {resume.technical.skills.map((skill, index) => (
                         <View key={index} style={styles.section}>
-                            <Text style={styles.subheading}>{skill.title}</Text>
-                            <Text style={styles.text}>{skill.description}</Text>
+                            <Text style={styles.subheading}>{stripHtml(skill.title)}</Text>
+                            <Text style={styles.text}>{stripHtml(skill.description)}</Text>
                         </View>
                     ))}
                 </View>

@@ -1,13 +1,15 @@
+import { person, resume } from '@/app/resources/content';
 import { NextResponse } from 'next/server';
 import { renderToBuffer } from '@react-pdf/renderer';
 import { PDFTemplate } from './PDFTemplate';
 import React from 'react';
-import { person } from '@/app/resources/content';
 
 export async function GET() {
     try {
-        // Generate PDF
-        const pdfBuffer = await renderToBuffer(React.createElement(PDFTemplate));
+        // Generate PDF with person data
+        const pdfBuffer = await renderToBuffer(
+            React.createElement(PDFTemplate, { person, resume })
+        );
 
         // Return the PDF with appropriate headers
         return new NextResponse(pdfBuffer, {
