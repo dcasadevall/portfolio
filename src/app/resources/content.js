@@ -119,10 +119,12 @@ const resume = {
         role: "Software Engineer",
         achievements: [
           <>
-            Improved <span className="highlight">multithreading QoS</span>, achieving up to 20% faster response times
+            Reduced OS throttling through improved <span className="highlight">multithreading QoS</span>, enhancing mail and calendar
+            performance by up to 20%
           </>,
           <>
-            Led a refactor of the <span className="highlight">iCloud</span> and <span className="highlight">CalDAV</span> sync layer, reducing dependencies and improving test coverage
+            Led Calendar team's refactor of the <span className="highlight">iCloud</span> and <span className="highlight">CalDAV</span> sync
+            layer, reducing sync errors by 10% while improving test coverage by 15%
           </>,
         ],
         images: [],
@@ -133,15 +135,17 @@ const resume = {
         role: "Staff Software Engineer",
         achievements: [
           <>
-            Migrated <span className="highlight">JSON</span> serialization to <span className="highlight">Protobuf</span>, reducing deserialization time by 60%
-          </>,
-          <>
-            Developed object placement <span className="highlight">heuristics</span> for Bakery Story 2, improving D7 retention by 5%
-          </>,
-          <>
             Designed the company's game engine from the grounds up, using <span className="highlight">C#</span> and leveraging <span className="highlight">inversion
               of control</span> and <span className="highlight">SOLID principles</span> to provide a maintainable and testable engine used throughout the
             company
+          </>,
+          <>
+            Led company-wide migration from <span className="highlight">JSON</span> to <span className="highlight">Protobuf</span> serialization across all game titles,
+            reducing network payload size by 30% and improving deserialization time by 60%
+          </>,
+          <>
+            Developed object placement and NPC pathfinding <span className="highlight">heuristics</span> for Bakery Story 2,
+            improving D7 retention by 5%
           </>,
         ],
         images: [],
