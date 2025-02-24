@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#ffffff',
     },
     section: {
-        marginBottom: 20,
+        marginBottom: 15,
     },
     heading: {
         fontSize: 24,
@@ -72,6 +72,26 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         breakBefore: 'page',
     },
+    headerSection: {
+        marginBottom: 15,
+        alignItems: 'center',
+    },
+    headerName: {
+        fontSize: 32,
+        fontWeight: 'bold',
+        marginBottom: 4,
+        color: '#1a1a1a',
+    },
+    roleText: {
+        fontSize: 16,
+        color: '#4b5563',
+        marginBottom: 4,
+    },
+    headerLink: {
+        fontSize: 14,
+        color: '#2563eb',
+        textDecoration: 'none',
+    },
 });
 
 const Footer = () => (
@@ -128,11 +148,13 @@ export const PDFTemplate: React.FC<PDFTemplateProps> = ({ person, resume, ...pro
         <Page size="A4" style={styles.page}>
             {/* Header */}
             <View style={styles.section}>
-                <Text style={styles.heading}>{person.name}</Text>
-                <Text style={styles.text}>{person.role}</Text>
-                <Link style={styles.link} src={`https://${baseURL}`}>
-                    {`https://${baseURL}`}
-                </Link>
+                <View style={styles.headerSection}>
+                    <Text style={styles.headerName}>{person.name}</Text>
+                    <Text style={styles.roleText}>{person.role}</Text>
+                    <Link style={styles.headerLink} src={`https://${baseURL}`}>
+                        {`https://${baseURL}`}
+                    </Link>
+                </View>
             </View>
 
             {/* Introduction */}
