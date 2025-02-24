@@ -7,29 +7,38 @@ const styles = StyleSheet.create({
     page: {
         padding: 30,
         fontFamily: 'Helvetica',
+        backgroundColor: '#ffffff',
     },
     section: {
         marginBottom: 20,
     },
     heading: {
-        fontSize: 20,
+        fontSize: 24,
         fontWeight: 'bold',
         marginBottom: 10,
+        color: '#1a1a1a',
     },
     subheading: {
         fontSize: 16,
         fontWeight: 'bold',
         marginBottom: 5,
+        color: '#2563eb', // blue-600
     },
     text: {
         fontSize: 12,
         marginBottom: 5,
+        color: '#4b5563', // gray-600
+        lineHeight: 1.5,
     },
     link: {
         fontSize: 12,
-        color: '#0066cc',
+        color: '#2563eb',
         textDecoration: 'none',
         marginBottom: 10,
+    },
+    highlight: {
+        color: '#2563eb',
+        fontWeight: 'bold',
     },
     experienceHeader: {
         flexDirection: 'row',
@@ -40,6 +49,8 @@ const styles = StyleSheet.create({
         fontSize: 12,
         marginBottom: 3,
         paddingLeft: 15,
+        color: '#4b5563',
+        lineHeight: 1.5,
     },
     introduction: {
         fontSize: 12,
@@ -78,8 +89,22 @@ interface PDFTemplateProps extends React.ComponentProps<typeof Document> {
 
 const stripHtml = (content: string | React.ReactElement) => {
     if (typeof content === 'string') {
-        const withoutSpans = content.replace(/<span[^>]*>(.*?)<\/span>/g, '$1');
-        return withoutSpans.replace(/<[^>]*>/g, '');
+        // Replace highlight spans with special markers
+        const withHighlights = content.replace(
+            /<span[^>]*className="highlight"[^>]*>(.*?)<\/span>/g,
+            '{{highlight}}$1{{/highlight}}'
+        );
+        // Remove other HTML tags
+        const withoutOtherTags = withHighlights.replace(/<[^>]*>/g, '');
+        // Convert back to Text components with styles
+        return withoutOtherTags.split(/(\{\{highlight\}\}.*?\{\{\/highlight\}\})/g)
+            .map(part => {
+                const highlightMatch = part.match(/\{\{highlight\}\}(.*?)\{\{\/highlight\}\}/);
+                if (highlightMatch) {
+                    return <Text style={styles.highlight}>{highlightMatch[1]}</Text>;
+                }
+                return part;
+            });
     }
 
     // Handle React elements
