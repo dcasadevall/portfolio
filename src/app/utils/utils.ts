@@ -16,6 +16,7 @@ type Metadata = {
   image?: string;
   images: string[];
   tag?: string;
+  objectFit?: "cover" | "contain";
   team: Team[];
   link?: string;
   textOverlays?: {
@@ -51,6 +52,7 @@ function readMDXFile(filePath: string) {
     image: data.image || "",
     images: data.images || [],
     tag: data.tag || [],
+    objectFit: data.objectFit || "cover",
     team: data.team || [],
     link: data.link || "",
     textOverlays: data.textOverlays?.map(overlay => ({

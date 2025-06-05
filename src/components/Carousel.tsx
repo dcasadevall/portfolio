@@ -10,6 +10,7 @@ interface CarouselImage {
 interface CarouselProps {
     images: CarouselImage[];
     sizes?: string;
+    objectFit?: "cover" | "contain";
     autoplayInterval?: number;  // Time in ms between transitions
     textDuration?: number;      // Time in ms to show text
     textOverlays?: { text: string; position?: string }[];
@@ -18,6 +19,7 @@ interface CarouselProps {
 export const Carousel: React.FC<CarouselProps> = ({
     images,
     sizes,
+    objectFit = "cover",
     autoplayInterval = 3000,  // Default 3s for images
     textDuration = 5000,       // Default 5s for text
     textOverlays = []
@@ -55,16 +57,20 @@ export const Carousel: React.FC<CarouselProps> = ({
     const renderMedia = (image: CarouselImage) => {
         if (image.src.endsWith('.mp4')) {
             return (
-                <video
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    onTimeUpdate={image.onTimeUpdate}
-                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                >
-                    <source src={image.src} type="video/mp4" />
-                </video>
+                <div style={{ width: '100%', height: '100%', position: 'relative', background: 'black' }}>
+                    <video
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        onTimeUpdate={image.onTimeUpdate}
+                        // Object fit is set to contain to ensure the video is displayed correctly
+                        // with side black bars if needed
+                        style={{ width: '100%', height: '100%', objectFit: objectFit }}
+                    >
+                        <source src={image.src} type="video/mp4" />
+                    </video>
+                </div>
             );
         }
 
@@ -73,7 +79,7 @@ export const Carousel: React.FC<CarouselProps> = ({
                 src={image.src}
                 alt={image.alt}
                 sizes={sizes}
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                style={{ width: '100%', height: '100%', objectFit: objectFit }}
             />
         );
     };

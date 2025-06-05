@@ -34,6 +34,7 @@ export function Projects({ range, source, baseUrl }: ProjectsProps) {
           key={post.slug}
           href={`${baseUrl}/${post.slug}`}
           images={post.metadata.images}
+          objectFit={post.metadata.objectFit}
           title={post.metadata.title}
           description={post.metadata.summary}
           content={post.content}

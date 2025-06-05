@@ -24,6 +24,7 @@ interface ProjectCardProps {
   images: string[];
   title: string;
   content: string;
+  objectFit?: "cover" | "contain";
   description: string;
   avatars: { src: string }[];
   link: string;
@@ -35,6 +36,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   images = [],
   title,
   content,
+  objectFit = "cover",
   description,
   avatars,
   link,
@@ -62,6 +64,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
       <div style={{ position: 'relative' }}>
         <Carousel
           sizes="(max-width: 960px) 100vw, 960px"
+          objectFit={objectFit}
           images={images.map((image) => ({
             src: image,
             alt: title,
