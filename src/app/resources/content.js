@@ -283,8 +283,8 @@ const work = {
 };
 
 const sideProjects = {
-  label: "Side Projects",
-  title: "Side Projects",
+  label: "Experiments",
+  title: "Experiments",
   description: "A collection of my personal projects and experiments",
 
   projects: [

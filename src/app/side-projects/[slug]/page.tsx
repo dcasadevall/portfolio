@@ -101,7 +101,7 @@ export default function Project({ params }: SideProjectParams) {
       />
       <Column maxWidth="xs" gap="16">
         <Button href="/side-projects" variant="tertiary" weight="default" size="s" prefixIcon="chevronLeft">
-          Side Projects
+          Experiments
         </Button>
         <Heading variant="display-strong-s">{post.metadata.title}</Heading>
       </Column>
