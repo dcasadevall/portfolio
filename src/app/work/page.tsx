@@ -63,7 +63,7 @@ export default function Work() {
           }),
         }}
       />
-      <Projects />
+      <Projects source={["src", "app", "work", "projects"]} baseUrl="work" />
     </Column>
   );
 }

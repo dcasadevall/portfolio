@@ -3,7 +3,7 @@ const baseURL = "dcasadevall.vercel.app";
 const routes = {
   "/": true,
   "/work": true,
-  "/side-projects": false,
+  "/side-projects": true,
 };
 
 // Enable password protection on selected routes

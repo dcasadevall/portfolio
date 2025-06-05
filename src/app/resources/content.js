@@ -227,8 +227,8 @@ const resume = {
 };
 
 const work = {
-  label: "Dev & Games",
-  title: "Dev & Games",
+  label: "Work",
+  title: "Work",
   description: `Game and dev projects by ${person.name}`,
   projects: [
     {
