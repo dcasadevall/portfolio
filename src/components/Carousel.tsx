@@ -1,5 +1,5 @@
 import { SmartImage, RevealFx } from "@/once-ui/components";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 interface CarouselImage {
     src: string;
@@ -26,16 +26,23 @@ export const Carousel: React.FC<CarouselProps> = ({
 }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [textIndex, setTextIndex] = useState(0);
+    const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+
+    const isVideoOnly = images.every((image) => image.src.endsWith('.mp4'));
+
+    useEffect(() => {
+        videoRefs.current = videoRefs.current.slice(0, images.length);
+    }, [images.length]);
 
     // Separate timers for images and text
     useEffect(() => {
-        if (images.length <= 1) return;
+        if (images.length <= 1 || isVideoOnly) return;
         const imageTimer = setInterval(() => {
             setCurrentIndex((prev) => (prev + 1) % images.length);
         }, autoplayInterval);
 
         return () => clearInterval(imageTimer);
-    }, [images.length, autoplayInterval]);
+    }, [images.length, autoplayInterval, isVideoOnly]);
 
     useEffect(() => {
         if (textOverlays.length <= 0) return;
@@ -54,18 +61,43 @@ export const Carousel: React.FC<CarouselProps> = ({
         setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
     };
 
-    const renderMedia = (image: CarouselImage) => {
+    const handleVideoEnded = () => {
+        if (currentIndex === images.length - 1) {
+            setCurrentIndex(0);
+        } else {
+            handleNext();
+        }
+    };
+
+    useEffect(() => {
+        if (isVideoOnly && videoRefs.current[currentIndex]) {
+            videoRefs.current[currentIndex]?.play();
+        }
+    }, [currentIndex, isVideoOnly]);
+
+    const renderMedia = (image: CarouselImage, index: number) => {
+        const isVisible = index === currentIndex;
         if (image.src.endsWith('.mp4')) {
             return (
-                <div style={{ width: '100%', height: '100%', position: 'relative', background: 'black' }}>
+                <div
+                    style={{
+                        width: '100%',
+                        height: '100%',
+                        position: 'absolute',
+                        background: 'black',
+                        visibility: isVisible ? 'visible' : 'hidden',
+                    }}
+                >
                     <video
-                        autoPlay
+                        ref={(el) => {
+                            videoRefs.current[index] = el;
+                        }}
+                        autoPlay={index === 0}
                         muted
-                        loop
                         playsInline
+                        onEnded={isVideoOnly ? handleVideoEnded : undefined}
+                        loop={!isVideoOnly}
                         onTimeUpdate={image.onTimeUpdate}
-                        // Object fit is set to contain to ensure the video is displayed correctly
-                        // with side black bars if needed
                         style={{ width: '100%', height: '100%', objectFit: objectFit }}
                     >
                         <source src={image.src} type="video/mp4" />
@@ -75,18 +107,29 @@ export const Carousel: React.FC<CarouselProps> = ({
         }
 
         return (
-            <SmartImage
-                src={image.src}
-                alt={image.alt}
-                sizes={sizes}
-                style={{ width: '100%', height: '100%', objectFit: objectFit }}
-            />
+            <div
+                style={{
+                    width: '100%',
+                    height: '100%',
+                    position: 'absolute',
+                    visibility: isVisible ? 'visible' : 'hidden',
+                }}
+            >
+                <SmartImage
+                    src={image.src}
+                    alt={image.alt}
+                    sizes={sizes}
+                    style={{ width: '100%', height: '100%', objectFit: objectFit }}
+                />
+            </div>
         );
     };
 
     return (
         <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', borderRadius: '12px', overflow: 'hidden' }}>
-            {images.length > 0 && renderMedia(images[currentIndex])}
+            {images.map((image, index) => (
+                <div key={index}>{renderMedia(image, index)}</div>
+            ))}
             {textOverlays.length > 0 && (
                 <div className="absolute inset-0 flex items-center justify-center bg-black/50">
                     <div className="text-white text-2xl">
@@ -101,7 +144,7 @@ export const Carousel: React.FC<CarouselProps> = ({
                 </div>
             )}
 
-            {images.length > 1 && (
+            {images.length > 1 && !isVideoOnly && (
                 <>
                     <button
                         onClick={handlePrev}
